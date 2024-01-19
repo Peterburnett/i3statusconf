@@ -1,0 +1,45 @@
+general {
+  colors = true
+  color_good = "#a3be8c"
+  color_degraded = "#ebcb8b"
+  color_bad = "#bf616a"
+  interval = 1
+  separator = "|"
+}
+
+order += "disk /"
+order += "disk /home"
+order += "cpu_usage"
+order += "memory"
+order += "ethernet enp34s0"
+order += "volume master"
+order += "time"
+
+disk "/" {
+  format = "/: %percentage_free free"
+}
+
+disk "/home" {
+  format = "~/: %percentage_free free"
+}
+
+cpu_usage {
+  format = "CPU: %usage"
+  degraded_threshold = 90
+  max_threshold = 95
+}
+
+ethernet enp34s0 {
+  format_up = "ETH: %ip (%speed)"
+  format_down = "ETH: down"
+}
+
+memory {
+  memory_used_method = classical
+  format="Memory: %used/%total"
+}
+
+volume master {
+  format = "VOL: %volume"
+  format_muted = "VOL: Muted"
+}
